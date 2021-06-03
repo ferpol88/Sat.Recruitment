@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
@@ -21,6 +28,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sat.Recruitment.Api\Sat.Recruitment.Api.csproj" />
+    <ProjectReference Include="..\Sat.Recruitment.Model\Sat.Recruitment.Model.csproj" />
+    <ProjectReference Include="..\Sat.Recruitment.Services\Sat.Recruitment.Services.csproj" />
   </ItemGroup>
 
 </Project>

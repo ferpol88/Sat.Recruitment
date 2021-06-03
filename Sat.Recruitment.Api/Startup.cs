@@ -10,6 +10,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Sat.Recruitment.Model;
+using Sat.Recruitment.Services.Repository;
+using Sat.Recruitment.Services;
+
+using System.Reflection;
 
 namespace Sat.Recruitment.Api
 {
@@ -27,6 +32,11 @@ namespace Sat.Recruitment.Api
         {
             services.AddControllers();
             services.AddSwaggerGen();
+            services.AddSingleton<IUserRepository, UserRepository>();
+            services.AddScoped<IUserServices, UserServices>();
+
+            services.AddSingleton<IUserFactory, UserFactory>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,6 +46,7 @@ namespace Sat.Recruitment.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseSwagger();
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
@@ -47,6 +58,9 @@ namespace Sat.Recruitment.Api
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.ApplicationServices.GetService<IUserFactory>().Initialize();
+            app.ApplicationServices.GetService<IUserRepository>().Initialize();
 
             app.UseEndpoints(endpoints =>
             {
